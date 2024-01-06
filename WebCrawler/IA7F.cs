@@ -35,7 +35,7 @@ namespace prjC349WebMVC.Library.WebCrawler
         {
             public string warehouse;
 
-            public List<string> area;
+            public List<string> areaList;
         }
 
         public List<string> GetWarehouseData()
@@ -118,13 +118,13 @@ namespace prjC349WebMVC.Library.WebCrawler
                         var document = new HtmlAgilityPack.HtmlDocument();
                         document.LoadHtml(z);
                         // 要保存为HTML的文本内容
-                        string htmlContent = z;
+                        //string htmlContent = z;
 
                         // 保存为HTML文件的路径
-                        string filePath = "IA7F.html";
+                        //string filePath = "IA7F.html";
 
                         // HTML内容輸出成檔案 *hint：這樣才是最準的!直接看實際網頁可能會被javascript動過結構!
-                        File.WriteAllText(filePath, htmlContent);
+                        //File.WriteAllText(filePath, htmlContent);
 
                         HtmlAgilityPack.HtmlNodeCollection optionNodes = document.DocumentNode.SelectNodes("/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr");
 
@@ -138,7 +138,7 @@ namespace prjC349WebMVC.Library.WebCrawler
                             string myParse1 = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i+1}]/td[2]/input").GetAttributeValue("value", "default");
                             tmp_area_List.Add(myParse1);
                         }
-                        returnData.area = tmp_area_List;
+                        returnData.areaList = tmp_area_List;
                         // /html/body/div[3]/div[3]/form/div[2]/div[1]/div[2]/div[2]/table/tbody/tr[1]/td[2]/input
                         // /html/body/div[3]/div[3]/form/div[2]/div[1]/div[2]/div[2]/table/tbody/tr[1]
                         // 解析JSON數據並映射到C#對象                     
