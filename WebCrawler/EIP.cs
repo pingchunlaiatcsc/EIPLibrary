@@ -78,7 +78,7 @@ namespace EIPLibrary.WebCrawler
                         myParse1 = "";
 
                         //myParse1 = document.DocumentNode.SelectSingleNode("html[1]/body[1]/div[1]/form[1]/div[2]/input[1]").OuterHtml;
-                        myParse1 = document.DocumentNode.SelectSingleNode("//input[@id='__VIEWSTATEGENERATOR']").GetAttributeValue("value", "default"); ;
+                        myParse1 = document.DocumentNode.SelectSingleNode("//input[@id='__VIEWSTATEGENERATOR']").GetAttributeValue("value", "default");
                         myViewStateGenerator = myParse1;
                         myParse1 = "";
 
