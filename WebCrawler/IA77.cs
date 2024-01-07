@@ -24,16 +24,9 @@ namespace prjC349WebMVC.Library.WebCrawler
         public IA77(EIP eipinstance)
         {
             this.eip = eipinstance;
-            //this._warehouseList = GetWarehouseData();
-            //foreach (var warehouse in warehouseList)
-            //{
-            //    this._IA77DataList.Add(PostToGetData(warehouse));
-            //}
-            //this._IA77DataList = PostToGetData();
         }
         public class Model
         {
-            public int id { get; set; }
             public string OP { get; set; }
             public string Loc { get; set; }
             public string Layer { get; set; }
@@ -41,22 +34,23 @@ namespace prjC349WebMVC.Library.WebCrawler
             public string BillOfLading { get; set; }
             public string ShipToCode { get; set; }
             public string LiftNumber { get; set; }
-            public string Weight { get; set; }
-            public string Thickness { get; set; }
-            public string Width { get; set; }
-            public string Length { get; set; }
-            public string PcsCount { get; set; }
-            public string Ok_ReleasedCode { get; set; }
-            public string ReceivedDate { get; set; }
-            public string ReceivedDate8 { get; set; }
-            public string MoveDate { get; set; }
-            public string MoveDate8 { get; set; }
+            public int Weight { get; set; }
+            public int Thickness { get; set; }
+            public int Width { get; set; }
+            public int Length { get; set; }
+            public int PcsCount { get; set; }
+            public int Ok_ReleasedCode { get; set; }
+            //public string ReceivedDate { get; set; }
+            public DateTime ReceivedDate8 { get; set; }
+            //public string MoveDate { get; set; }
+            public DateTime MoveDate8 { get; set; }
             public string DeliveryDate { get; set; }
             public string CustomerName { get; set; }
             public string OrderCustomerName { get; set; }
             public string Spec { get; set; }
             public string PltNumber { get; set; }
             public string PlateType { get; set; }
+            public DateTime UpdateTime { get; set; }
         }
 
         public void GetLocData(string loc)
@@ -101,7 +95,7 @@ namespace prjC349WebMVC.Library.WebCrawler
                             for (int i = 0; i < optionNodes.Count - 1; i++)
                             {
                                 Model tmp_model = new Model();
-                                tmp_model.id = i;
+                                //tmp_model.id = i;
                                 tmp_model.OP = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[1]/label").InnerText;
                                 tmp_model.Loc = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[2]/label").InnerText;
                                 tmp_model.Layer = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[3]/label").InnerText;
@@ -109,22 +103,25 @@ namespace prjC349WebMVC.Library.WebCrawler
                                 tmp_model.BillOfLading = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[5]/label").InnerText;
                                 tmp_model.ShipToCode = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[6]/label").InnerText.Trim();
                                 tmp_model.LiftNumber = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[7]/label").InnerText;
-                                tmp_model.Weight = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[8]/label").InnerText;
-                                tmp_model.Thickness = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[9]/label").InnerText;
-                                tmp_model.Width = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[10]/label").InnerText;
-                                tmp_model.Length = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[11]/label").InnerText;
-                                tmp_model.PcsCount = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[13]/label").InnerText;
-                                tmp_model.Ok_ReleasedCode = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[14]/label").InnerText;
-                                tmp_model.ReceivedDate = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[17]/label").InnerText;
-                                tmp_model.ReceivedDate8 = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[18]/label").InnerText;
-                                tmp_model.MoveDate = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[19]/label").InnerText;
-                                tmp_model.MoveDate8 = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[20]/label").InnerText;
+                                tmp_model.Weight =Int16.Parse(document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[8]/label").InnerText);
+                                tmp_model.Thickness = Int16.Parse(document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[9]/label").InnerText);
+                                tmp_model.Width = Int16.Parse(document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[10]/label").InnerText);
+                                tmp_model.Length = Int16.Parse(document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[11]/label").InnerText);
+                                tmp_model.PcsCount = Int16.Parse(document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[13]/label").InnerText);
+                                tmp_model.Ok_ReleasedCode = Int16.Parse(document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[14]/label").InnerText);
+                                //tmp_model.ReceivedDate = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[17]/label").InnerText;
+                                string ReceivedDate8_str = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[18]/label").InnerText;
+                                tmp_model.ReceivedDate8 = DateTime.Parse($"{ReceivedDate8_str.Substring(0, 4)}/{ReceivedDate8_str.Substring(4,2)}/{ReceivedDate8_str.Substring(6,2)}");
+                                //tmp_model.MoveDate = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[19]/label").InnerText;
+                                string MoveDate8_str = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[18]/label").InnerText;
+                                tmp_model.MoveDate8 = DateTime.Parse($"{MoveDate8_str.Substring(0, 4)}/{MoveDate8_str.Substring(4,2)}/{MoveDate8_str.Substring(6,2)}");
                                 tmp_model.DeliveryDate = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[21]/label").InnerText;
                                 tmp_model.CustomerName = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[23]/label").InnerText.Trim();
                                 tmp_model.OrderCustomerName = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[24]/label").InnerText.Trim();
                                 tmp_model.Spec = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[25]/label").InnerText.Trim();
                                 tmp_model.PltNumber = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[26]/label").InnerText.Trim();
                                 tmp_model.PlateType = document.DocumentNode.SelectSingleNode($"/html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[{i + 1}]/td[28]/label").InnerText.Trim();
+                                tmp_model.UpdateTime = DateTime.Now;
                                 // /html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[1]/td[1]/label
                                 // /html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[1]/td[2]/label
                                 IA77DataList.Add(tmp_model);
@@ -133,6 +130,8 @@ namespace prjC349WebMVC.Library.WebCrawler
 
                     }
                 }
+                Console.WriteLine($"{loc} 更新完成");
+                
             }
 
             catch
