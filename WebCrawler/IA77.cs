@@ -130,7 +130,7 @@ namespace prjC349WebMVC.Library.WebCrawler
 
                     }
                 }
-                Console.WriteLine($"{loc} 更新完成");
+                Console.WriteLine($"{loc} 擷取完成");
                 
             }
 
