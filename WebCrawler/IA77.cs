@@ -124,7 +124,7 @@ namespace prjC349WebMVC.Library.WebCrawler
                                 tmp_model.UpdateTime = DateTime.Now;
                                 // /html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[1]/td[1]/label
                                 // /html/body/div[3]/div[3]/form/div[2]/table/tbody/tr[1]/td[2]/label
-                                IA77DataList.Add(tmp_model);
+                                _IA77DataList.Add(tmp_model);
                             }
                         }
 
