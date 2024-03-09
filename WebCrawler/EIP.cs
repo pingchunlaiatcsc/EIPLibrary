@@ -180,13 +180,13 @@ namespace EIPLibrary.WebCrawler
                 if (userName != null && userDept != null)
                 {
                     _isLogin = true;
-                    Console.WriteLine("登入成功");
+                    Console.WriteLine("EIP登入成功");
                     Console.WriteLine($"您好，{_userName} {_userDept}");
                 }
                 else
                 {
                     _isLogin = false;
-                    Console.WriteLine($"登入失敗，請重新登入");
+                    Console.WriteLine($"EIP登入成功，請重新登入");
                 }
                 //儲存登入者身分
             }
