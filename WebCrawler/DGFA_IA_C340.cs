@@ -29,7 +29,7 @@ namespace prjC349WebMVC.Library.WebCrawler
 
         }
 
-        public void PostToGetData()
+        public void PostToGetData(string fileSavePath)
         {
 
             try
@@ -52,7 +52,7 @@ namespace prjC349WebMVC.Library.WebCrawler
                     dataStream.Close();
                 }
                 //看到.GetResponse()才代表真正把 request 送到 伺服器
-                using (FileStream fs = new FileStream(@$"IA_C340.XLS", FileMode.Create, FileAccess.Write, FileShare.None))
+                using (FileStream fs = new FileStream(Path.Combine(fileSavePath,@$"IA_C340.XLS"), FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     using (WebResponse response = request.GetResponse())
                     {
